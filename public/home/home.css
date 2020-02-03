@@ -10,6 +10,11 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+/*Leaflet*/
+ #leafletMap { height: 180px; }
+/*End leaflet*/
+
  :root {
     --blue: #007bff;
     --indigo: #6610f2;
