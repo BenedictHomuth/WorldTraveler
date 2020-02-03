@@ -25,6 +25,9 @@
  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
  crossorigin=""></script>
+
+
+ <script src="../leaflet/map.js" defer></script>
   <!--End Leaflet imports-->
 
   <!-- Custom styles for this template-->
@@ -60,12 +63,12 @@
           <span>List of visited Places</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Settings</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Stats</span></a>
       </li>
@@ -80,25 +83,12 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Overview</li>
-          </ol>
-
-
         <!--Leaflet Map-->
 
         <div id="leafletMap"></div>
 
 
         <!--End Leaflet Map-->
-
-       
-
-  
 
       <!-- Sticky Footer -->
       <footer class="sticky-footer">

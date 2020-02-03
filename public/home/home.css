@@ -12,7 +12,11 @@
  */
 
 /*Leaflet*/
- #leafletMap { height: 180px; }
+ #leafletMap { 
+     height: 800px; 
+     width: 100%;
+    
+    }
 /*End leaflet*/
 
  :root {
