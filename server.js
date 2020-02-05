@@ -3,7 +3,7 @@ const app = express();
 require("dotenv").config();
 const mysql = require("mysql2");
 
-
+/*
 //db connection
 const dbcon = mysql.createConnection({
     host: process.env.DB_ADDRESS,
@@ -16,8 +16,20 @@ dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, 
     console.log(results);
     console.log("\n" + fields);
 });
-
+*/
 app.listen(3000, () => console.log("listening on port 3000"));
 
 app.use(express.static("public"));
+//This allows the server to understand json
+app.use(express.json({ limit: '1mb' }));
+
+//API for transmitting data to DB
+app.post("/api", (req, res) =>{
+
+    console.log(req.body);
+    res.json({
+        status: "complete"
+    })  
+
+})
 
