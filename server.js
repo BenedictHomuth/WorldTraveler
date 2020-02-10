@@ -40,18 +40,19 @@ app.post("/api", (request, response) =>{
    response.status(202).send(container);
 });
 
-//API for retrieving data to DB
+//API for retrieving data from DB
 app.get("/database", (request, response) =>{
 
     console.log("I got a DB request!");
-    var object;
+    var output;
     dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, fields){
-        object = results;
-        console.log(results)
+        if(err) throw err;
+
+       
+       output = JSON.stringify(results);
+       response.status(220).send(JSON.stringify(output));
     });
 
-    
-
-    response.status(200).send(JSON.stringify(object));
+   
 });
 
