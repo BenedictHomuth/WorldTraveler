@@ -20,7 +20,6 @@ sendBtn.addEventListener('click',  event =>{
         //Prepare the request body
         body: JSON.stringify(username)
     }
-    //condolr
     //make the request to the server and safe the response in variable
     fetch("/api", options)
       .then((response) => {
@@ -41,8 +40,6 @@ reqBtn.addEventListener('click',  event =>{
     })
     .then((myJson) => {
       console.log(myJson);
-      console.log(myJson[3].id);
-      console.log(myJson[3].name);
     });
 });
 

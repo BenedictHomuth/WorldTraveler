@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+
+//This allows the server to understand json
 app.use(express.json({type: "application/json"}));
 require("dotenv").config();
 const mysql = require("mysql2");
@@ -11,22 +13,15 @@ const dbcon = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
-/*
-dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, fields){
-    console.log(results);
-    console.log("\n" + fields);
-});
-*/
+
 app.listen(3000, () => console.log("listening on port 3000"));
 
 app.use(express.static("public"));
-//This allows the server to understand json
-
 
 //API for transmitting data to DB
-app.post("/api", (request, response) =>{
+app.post("/api", (request, response) => {
     //DB MAGIC
-    var query  = "INSERT INTO " +process.env.DB_TABLENAME+ " ("+process.env.DB_API_USERINPUT+") VALUES ('"+request.body.username+"')";
+    var query = "INSERT INTO " + process.env.DB_TABLENAME + " (" + process.env.DB_API_USERINPUT + ") VALUES ('" + request.body.username + "')";
 
     dbcon.query(query, function (err, results, fields) {
         if (err) return response.json({ error: err });
@@ -35,7 +30,7 @@ app.post("/api", (request, response) =>{
             username: request.body.username
         };
         response.set('Content-Type', 'application/json');
-        response.status(202).send(container);
+        response.status(200).send(container);
     });
 });
 
@@ -59,7 +54,5 @@ app.get("/database", (request, response) => {
         response.set('Content-Type', 'application/json');
         response.status(200).send(JSON.stringify(output));
     });
-
-   
 });
 
