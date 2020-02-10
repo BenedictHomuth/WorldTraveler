@@ -25,17 +25,18 @@ app.use(express.static("public"));
 
 //API for transmitting data to DB
 app.post("/api", (request, response) =>{
+    //DB MAGIC
+    var query  = "INSERT INTO " +process.env.DB_TABLENAME+ " ("+process.env.DB_API_USERINPUT+") VALUES ('"+request.body.username+"')";
 
-    console.log("I got a request!");
-    console.log(request.body);
-    
-   var username = request.body.username;
-   var container = {
-       username: request.body.username
-    };
-    
-   response.set('Content-Type', 'application/json');
-   response.status(202).send(container);
+    dbcon.query(query, function (err, results, fields) {
+        if (err) return response.json({ error: err });
+
+        var container = {
+            username: request.body.username
+        };
+        response.set('Content-Type', 'application/json');
+        response.status(202).send(container);
+    });
 });
 
 //API for retrieving data from DB
