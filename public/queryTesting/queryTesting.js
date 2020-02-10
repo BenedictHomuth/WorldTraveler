@@ -7,12 +7,10 @@ const reqBtn = document.getElementById("makeReq");
 sendBtn.addEventListener('click',  event =>{
   
     
-    const iUsername = document.getElementById("username").value;
-    const iPw = document.getElementById("pw").value;
-    const data = {
-      username: iUsername,
-      password: iPw
-    }
+    const username = {
+      username : document.getElementById("username").value
+    };
+
     //Options, with which method, headers the data will come to the API
     const options = {
         method: "POST",
@@ -20,8 +18,9 @@ sendBtn.addEventListener('click',  event =>{
             "Content-Type": "application/json"
         },
         //Prepare the request body
-        body: JSON.stringify(data)
+        body: JSON.stringify(username)
     }
+    //condolr
     //make the request to the server and safe the response in variable
     fetch("/api", options)
       .then((response) => {

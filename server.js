@@ -30,13 +30,11 @@ app.post("/api", (request, response) =>{
     console.log(request.body);
     
    var username = request.body.username;
-   var password = request.body.password;
-   var container = {username,password};
+   var container = {
+       username: request.body.username
+    };
     
-   //Sends a Status code
-   //when .send --> string --> header : text/html
-   //when .send --> json / object --> header: application/json
-   //automatically
+   response.set('Content-Type', 'application/json');
    response.status(202).send(container);
 });
 
