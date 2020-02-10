@@ -4,15 +4,14 @@ app.use(express.json({type: "application/json"}));
 require("dotenv").config();
 const mysql = require("mysql2");
 
-/*
-//db connection
+
 const dbcon = mysql.createConnection({
     host: process.env.DB_ADDRESS,
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
-
+/*
 dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, fields){
     console.log(results);
     console.log("\n" + fields);
@@ -30,14 +29,29 @@ app.post("/api", (request, response) =>{
     console.log("I got a request!");
     console.log(request.body);
     
-   var a = request.body.name;
-   var b = request.body.nachname;
-   var x = {a,b};
+   var username = request.body.username;
+   var password = request.body.password;
+   var container = {username,password};
     
    //Sends a Status code
    //when .send --> string --> header : text/html
    //when .send --> json / object --> header: application/json
    //automatically
-   response.status(202).send(x);
+   response.status(202).send(container);
+});
+
+//API for retrieving data to DB
+app.get("/database", (request, response) =>{
+
+    console.log("I got a DB request!");
+    var object;
+    dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, fields){
+        object = results;
+        console.log(results)
+    });
+
+    
+
+    response.status(200).send(JSON.stringify(object));
 });
 

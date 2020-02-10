@@ -8,9 +8,17 @@
     <script src="queryTesting.js" defer></script>
 </head>
 <body>
-    <div class = "readData" id = "readData"></div>
+
+    
     <div class = "writeData" id = "writeData">
-        <button id ="makeReq">Submit</button>
+        <input type = "text" id = "username">
+        <input type = "password" id = "pw">
+        <button id = "sendReq">Submit</button>
+    </div>
+
+    <div class = "readData" id = "readData" style = "padding-top: 5%;">
+        <p id = "dbData"></p>
+        <button type="submit" id="makeReq">Get Data</button>
     </div>
 </body>
 </html>
