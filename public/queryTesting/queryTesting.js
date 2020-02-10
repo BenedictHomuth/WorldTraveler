@@ -1,3 +1,4 @@
+
 //Get Button which is used to submit data
 const subButton = document.getElementById("makeReq");
 
@@ -21,14 +22,13 @@ subButton.addEventListener('click',  event =>{
         body: JSON.stringify(data)
     }
     //make the request to the server and safe the response in variable
-    const response = fetch("/api", options);
-    
-    //extract the json
-    const answer = response;
-    //log the server response
-    console.log(answer);
-    
-    
+    fetch("/api", options)
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => {
+        console.log(myJson);
+      });
 });
 
 

@@ -34,7 +34,10 @@ app.post("/api", (request, response) =>{
    var b = request.body.nachname;
    var x = {a,b};
     
-  // response.send("Got it");
+   //Sends a Status code
+   //when .send --> string --> header : text/html
+   //when .send --> json / object --> header: application/json
+   //automatically
    response.status(202).send(x);
 });
 
