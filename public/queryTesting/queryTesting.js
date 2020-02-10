@@ -43,6 +43,7 @@ reqBtn.addEventListener('click',  event =>{
     .then((myJson) => {
       console.log(myJson);
       console.log(myJson[3].id);
+      console.log(myJson[3].name);
     });
 });
 

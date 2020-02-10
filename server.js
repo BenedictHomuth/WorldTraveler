@@ -49,15 +49,16 @@ app.get("/database", (request, response) => {
         if (err) throw err;
 
         var output = [];
+        //Trying to meme a JSON.Object 
+        //In reality just an array
         for (var i in results) {
             var id = results[i].id;
             var name = results[i].name;
             var object = { id, name };
             output[i] = object;
         }
-        //output = JSON.stringify(results);
-        console.log(output);
-        response.status(220).send(JSON.stringify(output));
+        response.set('Content-Type', 'application/json');
+        response.status(200).send(JSON.stringify(output));
     });
 
    
