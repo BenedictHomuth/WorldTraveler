@@ -41,16 +41,23 @@ app.post("/api", (request, response) =>{
 });
 
 //API for retrieving data from DB
-app.get("/database", (request, response) =>{
+app.get("/database", (request, response) => {
 
     console.log("I got a DB request!");
     var output;
-    dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function(err, results, fields){
-        if(err) throw err;
+    dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function (err, results, fields) {
+        if (err) throw err;
 
-       
-       output = JSON.stringify(results);
-       response.status(220).send(JSON.stringify(output));
+        var output = [];
+        for (var i in results) {
+            var id = results[i].id;
+            var name = results[i].name;
+            var object = { id, name };
+            output[i] = object;
+        }
+        //output = JSON.stringify(results);
+        console.log(output);
+        response.status(220).send(JSON.stringify(output));
     });
 
    
