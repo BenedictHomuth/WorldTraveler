@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+app.use(express.json({type: "application/json"}));
 require("dotenv").config();
 const mysql = require("mysql2");
 
@@ -21,15 +22,19 @@ app.listen(3000, () => console.log("listening on port 3000"));
 
 app.use(express.static("public"));
 //This allows the server to understand json
-app.use(express.json({ limit: '1mb' }));
+
 
 //API for transmitting data to DB
-app.post("/api", (req, res) =>{
+app.post("/api", (request, response) =>{
 
-    console.log(req.body);
-    res.json({
-        status: "complete"
-    })  
-
-})
+    console.log("I got a request!");
+    console.log(request.body);
+    
+   var a = request.body.name;
+   var b = request.body.nachname;
+   var x = {a,b};
+    
+  // response.send("Got it");
+   response.status(202).send(x);
+});
 
