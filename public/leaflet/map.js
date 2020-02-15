@@ -12,8 +12,9 @@ function createMap(lat, lon){
     myMarker.bindTooltip("You're here!").openTooltip();
     */
     getMarker();
+    setBounds();
     myMap.on('click', addMarker);
-        
+
     //To load tiles better. Don't know why this works
     //https://stackoverflow.com/questions/31454717/leaflet-only-loads-one-tile
     setTimeout(function () {
@@ -77,4 +78,15 @@ function initializeMapMarker(markers){
         marker.bindTooltip(markers[i].cityName);
     }
     return;
+}
+
+function setBounds(){
+    var southWest = L.latLng(-92, -182),
+    northEast = L.latLng(92, 182);
+    var bounds = L.latLngBounds(southWest, northEast);
+
+    myMap.setMaxBounds(bounds);
+    myMap.on('drag', function() {
+        myMap.panInsideBounds(bounds, { animate: false });
+    });
 }
