@@ -56,3 +56,23 @@ app.get("/database", (request, response) => {
     });
 });
 
+app.post("/api/safeMarker", (request, response) =>{
+    console.log("I will safe the marker");
+    console.log("Received data: \n" + request.body.cityName);
+
+
+
+    //
+    var query = "INSERT INTO " + process.env.DB_TABLENAME + " (" + process.env.DB_API_USERINPUT + ") VALUES ('" + request.body.username + "')";
+
+    dbcon.query(query, function (err, results, fields) {
+        if (err) return response.json({ error: err });
+
+        var container = {
+            username: request.body.username
+        };
+        response.set('Content-Type', 'application/json');
+        response.status(200).send(container);
+    });
+})
+

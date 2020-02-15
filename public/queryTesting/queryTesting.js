@@ -5,8 +5,7 @@ const reqBtn = document.getElementById("makeReq");
 
 //EventListener onClick
 sendBtn.addEventListener('click',  event =>{
-  
-    
+
     const username = {
       username : document.getElementById("username").value
     };
@@ -31,9 +30,6 @@ sendBtn.addEventListener('click',  event =>{
 });
 
 reqBtn.addEventListener('click',  event =>{
-  
-  //Options, with which method, headers the data will come to the API
-  //make the request to the server and safe the response in variable
   fetch("/database")
     .then((response) => {
       return response.json();
