@@ -1,21 +1,4 @@
 //Leaflet Map implementation
-/*
-function createMap(lat, lon){
-    const mymap = L.map('leafletMap').setView([lat, lon], 13);
-    const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-    const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    const tiles = L.tileLayer(tileURL, { attribution });
-    tiles.addTo(mymap);
-    const myMarker = L.marker([lat,lon]).addTo(mymap);
-    myMarker.bindTooltip("You're here!").openTooltip();
-}
-
-const lat = 51.509865;
-const lon = -0.118092;
-createMap(lat,lon);
-*/
-
-
 
 const myMap = L.map('leafletMap');
 function createMap(lat, lon){
@@ -24,9 +7,18 @@ function createMap(lat, lon){
     const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const tiles = L.tileLayer(tileURL, { attribution });
     tiles.addTo(myMap);
+   /*
     const myMarker = L.marker([lat,lon]).addTo(myMap);
     myMarker.bindTooltip("You're here!").openTooltip();
+    */
+    getMarker();
     myMap.on('click', addMarker);
+    
+    //To load tiles better. Don't know why this works
+    //https://stackoverflow.com/questions/31454717/leaflet-only-loads-one-tile
+    setTimeout(function () {
+        map.invalidateSize();
+    }, 0);
 }
 
 const lat = 51.509865;
@@ -69,5 +61,20 @@ function saveMarker(latlon, cityName){
 }
 
 function getMarker(){
-    
+    fetch("/api/getMarker")
+    .then((response) => {
+      return response.json();
+    })
+    .then((myJson) => {
+      initializeMapMarker(myJson);
+      return;
+    });
+}
+
+function initializeMapMarker(markers){
+    for(var i = 0; i < markers.length; i++){
+        const marker = L.marker([markers[i].lat,markers[i].lon]).addTo(myMap);
+        marker.bindTooltip(markers[i].cityName);
+    }
+    return;
 }

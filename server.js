@@ -62,13 +62,9 @@ app.post("/api/safeMarker", (request, response) =>{
     dbcon.query(query, function (err, results, fields) {
         if (err) return response.json({ error: err });
 
-        var container = {
-            status: "Marker added!"
-        };
-        response.set('Content-Type', 'application/json');
-        response.status(200).send(container);
+        response.status(200);
     });
-})
+});
 
 
 app.get("/api/getMarker", (request,response) =>{
@@ -81,12 +77,13 @@ app.get("/api/getMarker", (request,response) =>{
         //In reality just an array
         for (var i in results) {
             var id = results[i].id;
-            var name = results[i].name;
-            var object = { id, name };
+            var cityName = results[i].name;
+            var lat = results[i].lat;
+            var lon = results[i].lon;
+            var object = { id, lat, lon, cityName };
             output[i] = object;
         }
         response.set('Content-Type', 'application/json');
         response.status(200).send(JSON.stringify(output));
     });
-})
-
+});
