@@ -39,10 +39,10 @@ function addMarker(e){
     var cityName = prompt("Please enter the city name: ",'');
     newMarker.bindTooltip(cityName);
 
-    apiCallToSaveMarker(e.latlng, cityName);
+    saveMarker(e.latlng, cityName);
 }
 
-function apiCallToSaveMarker(latlon, cityName){
+function saveMarker(latlon, cityName){
     //prepare json
     const data = {
         lat: latlon.lat,
@@ -66,4 +66,8 @@ function apiCallToSaveMarker(latlon, cityName){
       .then((myJson) => {
         console.log(myJson);
       });
+}
+
+function getMarker(){
+    
 }

@@ -21,7 +21,7 @@ app.use(express.static("public"));
 //API for transmitting data to DB
 app.post("/api", (request, response) => {
     //DB MAGIC
-    var query = "INSERT INTO " + process.env.DB_TABLENAME + " (" + process.env.DB_API_USERINPUT + ") VALUES ('" + request.body.username + "')";
+    var query = "INSERT INTO " + process.env.DB_QUERYTEST + " (" + process.env.DB_QUERYTEST_USERINPUT + ") VALUES ('" + request.body.username + "')";
 
     dbcon.query(query, function (err, results, fields) {
         if (err) return response.json({ error: err });
@@ -39,7 +39,7 @@ app.get("/database", (request, response) => {
 
     console.log("I got a DB request!");
     var output;
-    dbcon.query("SELECT * FROM " + process.env.DB_TABLENAME, function (err, results, fields) {
+    dbcon.query("SELECT * FROM " + process.env.DB_QUERYTEST, function (err, results, fields) {
         if (err) throw err;
 
         var output = [];
@@ -57,22 +57,36 @@ app.get("/database", (request, response) => {
 });
 
 app.post("/api/safeMarker", (request, response) =>{
-    console.log("I will safe the marker");
-    console.log("Received data: \n" + request.body.cityName);
-
-
-
-    //
-    var query = "INSERT INTO " + process.env.DB_TABLENAME + " (" + process.env.DB_API_USERINPUT + ") VALUES ('" + request.body.username + "')";
+    var query = "INSERT INTO " + process.env.DB_MARKERS + " (" + process.env.DB_MARKER_LAT + ","+ process.env.DB_MARKER_LON+","+process.env.DB_MARKER_CITYNAME +") VALUES ('" + request.body.lat + "','" + request.body.lon + "','" + request.body.cityName + "')";
 
     dbcon.query(query, function (err, results, fields) {
         if (err) return response.json({ error: err });
 
         var container = {
-            username: request.body.username
+            status: "Marker added!"
         };
         response.set('Content-Type', 'application/json');
         response.status(200).send(container);
+    });
+})
+
+
+app.get("/api/getMarker", (request,response) =>{
+    var output;
+    dbcon.query("SELECT * FROM " + process.env.DB_MARKERS, function (err, results, fields) {
+        if (err) throw err;
+
+        var output = [];
+        //Trying to meme a JSON.Object 
+        //In reality just an array
+        for (var i in results) {
+            var id = results[i].id;
+            var name = results[i].name;
+            var object = { id, name };
+            output[i] = object;
+        }
+        response.set('Content-Type', 'application/json');
+        response.status(200).send(JSON.stringify(output));
     });
 })
 
