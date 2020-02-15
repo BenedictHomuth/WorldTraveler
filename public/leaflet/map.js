@@ -13,11 +13,11 @@ function createMap(lat, lon){
     */
     getMarker();
     myMap.on('click', addMarker);
-    
+        
     //To load tiles better. Don't know why this works
     //https://stackoverflow.com/questions/31454717/leaflet-only-loads-one-tile
     setTimeout(function () {
-        map.invalidateSize();
+        myMap.invalidateSize();
     }, 0);
 }
 
