@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Modal</title>
-  <link href="modals.css" rel="stylesheet"> 
-  <script defer src="modals.js"></script>
+  <script src="modals.js"></script>
 </head>
 <body>
-  <button data-modal-target="#modal">Open Modal</button>
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <div class="title">Enter information about your trip!</div>
-      <button data-close-button class="close-button">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class ="input-cityName">
-        <label for="cityName">Enter cityname: </label>
-        <input type="text" name="cityName" id="cityName" placeholder="Cityname">
-      </div>  
-      <div class ="input-visited">
-        <label for="visited">Visited: </label>
-        <input type="date" name="visited" id="visited">
-      </div>  
-      <div class ="input-comment">
-        <label for="comment">Enter a description:</label>
-        <textarea name="comment" id="comment" cols="30" rows="5" placeholder="Thoughts about your trip...."></textarea>
-      </div>  
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success">Save Your Trip!</button>
-      <button type="button" class="btn btn-danger">Abort</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Enter your trip information</h2>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="cityName">Visited City</label>
+                  <input type="text" class="form-control" id="cityName" aria-describedby="cityNameHelp" placeholder="The city name...">
+                  <small id="cityNameHelp" class="form-text text-muted">Start with entering the city name</small>
+                </div>
+                <div class="form-group">
+                  <label for="datePicked">Date of Visit</label>
+                  <input type="date" class="form-control" id="datePicked" aria-describedby="datePickedHelp">
+                  <small id="datePickedHelp" class="form-text text-muted">When was your stay?</small>
+                </div>
+                <div class="form-group">
+                  <label for="commentVisit">Comment</label>
+                  <textarea class="form-control" id="commentVisit" rows="3" aria-describedby="commentHelp"></textarea>
+                  <small id="commentHelp" class="form-text text-muted">Write your thoughts on the trip. (300 Character)</small>
+                </div>
+              </div>
+              <div class="modal-footer text-center">
+                <input class="btn btn-success" data-dismiss="modal" value="Save">
+                <input class="btn btn-danger" data-dismiss="modal" value="Close">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div id="overlay"></div>
-</body>
+  <button class="btn btn-primary" id="myBtn" >Open Modal</button>
+ </body>
+ <script>
+   var btn = document.getElementById("myBtn");
+
+   btn.addEventListener("click", function(){
+    $("#myModal").modal("show");
+   })
+ </script>
 
   
 </html>
