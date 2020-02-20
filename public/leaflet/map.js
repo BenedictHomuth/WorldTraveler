@@ -7,10 +7,7 @@ function createMap(lat, lon){
     const tileURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const tiles = L.tileLayer(tileURL, { attribution });
     tiles.addTo(myMap);
-   /*
-    const myMarker = L.marker([lat,lon]).addTo(myMap);
-    myMarker.bindTooltip("You're here!").openTooltip();
-    */
+
     getMarker();
     setBounds();
     myMap.on('click', addMarker);
@@ -21,10 +18,6 @@ function createMap(lat, lon){
         myMap.invalidateSize();
     }, 0);
 }
-
-const lat = 51.509865;
-const lon = -0.118092;
-createMap(lat,lon);
 
 function addMarker(e){
     // Add marker to map at click location; add popup window
@@ -81,8 +74,8 @@ function initializeMapMarker(markers){
 }
 
 function setBounds(){
-    var southWest = L.latLng(-92, -182),
-    northEast = L.latLng(92, 182);
+    var southWest = L.latLng(-120, -250),
+    northEast = L.latLng(120, 250);
     var bounds = L.latLngBounds(southWest, northEast);
 
     myMap.setMaxBounds(bounds);
@@ -90,3 +83,13 @@ function setBounds(){
         myMap.panInsideBounds(bounds, { animate: false });
     });
 }
+
+
+
+
+
+
+//Stufff to do --> Working on webside (MAIN)
+const lat = 51.509865;
+const lon = -0.118092;
+createMap(lat,lon);

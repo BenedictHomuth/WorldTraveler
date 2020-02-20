@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modal</title>
+  <link href="modals.css" rel="stylesheet"> 
+  <script defer src="modals.js"></script>
+</head>
+<body>
+  <button data-modal-target="#modal">Open Modal</button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title">Enter information about your trip!</div>
+      <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class ="input-cityName">
+        <label for="cityName">Enter cityname: </label>
+        <input type="text" name="cityName" id="cityName" placeholder="Cityname">
+      </div>  
+      <div class ="input-visited">
+        <label for="visited">Visited: </label>
+        <input type="date" name="visited" id="visited">
+      </div>  
+      <div class ="input-comment">
+        <label for="comment">Enter a description:</label>
+        <textarea name="comment" id="comment" cols="30" rows="5" placeholder="Thoughts about your trip...."></textarea>
+      </div>  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success">Save Your Trip!</button>
+      <button type="button" class="btn btn-danger">Abort</button>
+    </div>
+  </div>
+  <div id="overlay"></div>
+</body>
+
+  
+</html>
