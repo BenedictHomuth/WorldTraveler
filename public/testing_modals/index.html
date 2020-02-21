@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Modal</title>
-  <script src="modals.js"></script>
+  <script src="modals.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -20,7 +20,10 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h2>Enter your trip information</h2>
+                <h5>Enter your trip information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <div class="modal-body">
                 <div class="form-group">
@@ -40,8 +43,8 @@
                 </div>
               </div>
               <div class="modal-footer text-center">
-                <input class="btn btn-success" data-dismiss="modal" value="Save">
-                <input class="btn btn-danger" data-dismiss="modal" value="Close">
+                <input class="btn btn-success" id ="saveTripBtn" data-dismiss="modal" value="Save">
+                <input class="btn btn-danger" id = "dicardTripBtn" data-dismiss="modal" value="Close">
               </div>
             </div>
           </div>
@@ -50,14 +53,5 @@
     </div>
   </div>
   <button class="btn btn-primary" id="myBtn" >Open Modal</button>
- </body>
- <script>
-   var btn = document.getElementById("myBtn");
-
-   btn.addEventListener("click", function(){
-    $("#myModal").modal("show");
-   })
- </script>
-
-  
+ </body> 
 </html>
