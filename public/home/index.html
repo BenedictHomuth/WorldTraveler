@@ -11,9 +11,23 @@
 
   <title>WorldTraveler - Home</title>
 
+  <!--Clean up code later, because too many jquery / bootstrap cdn calls-->
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
   <!------ Include the above in your HEAD tag ---------->
 
   <!--Leaflet imports-->
@@ -32,6 +46,9 @@
 
   <!-- Custom styles for this template-->
   <link href="home.css" rel="stylesheet">
+
+  <!--modal script-->
+  <script src="modal.js" defer></script>
 
 </head>
 
@@ -58,7 +75,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="../visitedPlaces">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>List of visited Places</span></a>
       </li>
@@ -85,6 +102,43 @@
         <!--Leaflet Map-->
         <div id="leafletMap"></div>
         <!--End Leaflet Map-->
+
+        <!--Test-->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5>Enter your trip information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="cityName">Visited City</label>
+                  <input type="text" class="form-control" id="cityName" aria-describedby="cityNameHelp" placeholder="The city name...">
+                  <small id="cityNameHelp" class="form-text text-muted">Start with entering the city name</small>
+                </div>
+                <div class="form-group">
+                  <label for="datePicked">Date of Visit</label>
+                  <input type="date" class="form-control" id="datePicked" aria-describedby="datePickedHelp">
+                  <small id="datePickedHelp" class="form-text text-muted">When was your stay?</small>
+                </div>
+                <div class="form-group">
+                  <label for="commentVisit">Comment</label>
+                  <textarea class="form-control" id="commentVisit" rows="3" aria-describedby="commentHelp"></textarea>
+                  <small id="commentHelp" class="form-text text-muted">Write your thoughts on the trip. (300 Character)</small>
+                </div>
+              </div>
+              <div class="modal-footer text-center">
+                <input class="btn btn-success" id ="saveTripBtn" data-dismiss="modal" value="Save">
+                <input class="btn btn-danger" id = "dicardTripBtn" data-dismiss="modal" value="Close">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="myBtn" >Open Modal</button>
+        <!--Test-->
       </div>
       <!-- Sticky Footer -->
       <footer class="sticky-footer">
